@@ -28,7 +28,7 @@ lexicon_normalized_2_lexicon.pop(None)
 # Deal with <UNK> with valid set
 UNK_rules = {}
 count = 0
-with tqdm(val_data[:2]) as lines:
+with tqdm(val_data) as lines:
     for line in lines:
       t = str_to_tree(line)
       for p in t.productions():
@@ -64,7 +64,7 @@ def evaluate(dataset, gold_file, test_file):
           prediction = tree_to_str(prediction_tree)
           f.write("%s\n" % prediction)
 
-evaluate(test_data[:8], "gold.txt", "evaluation_data.parser_output")
+evaluate(test_data, "gold.txt", "evaluation_data.parser_output")
 
 s = scorer.Scorer()
 gold_path = 'gold.txt'
